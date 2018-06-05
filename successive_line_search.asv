@@ -1,0 +1,40 @@
+function [best_p,best_e] = successive_line_search(fh,initial_p,varargin)
+
+params.stop_function_handle = [];
+
+params = parse_pv_pairs(params,varargin);
+
+% Code
+n=numel(initial_p);
+best_p = initial_p';
+counter = 0;
+
+
+keep_going = 1;
+while (keep_going)
+    vi = randi(ceil(n,1);
+    x = zeros(n,1);
+    x(vi) = rand-0.5;
+    
+    [z,best_e] = fminbnd(@xx,-0.5,0.5)
+    best_p = best_p + z*x;
+    counter = counter+1
+end
+
+    function e = xx(z)
+        e = fh(best_p + z*x);
+        
+        % Check the stop function
+        if (~isempty(params.stop_function_handle))
+            if (params.stop_function_handle())
+                keep_going=0;
+                return;
+            end
+        end
+    end
+    
+end
+
+    
+
+
