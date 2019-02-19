@@ -90,7 +90,7 @@ for i=1:length(params.x_data)
     y_minus = y_mean - y_cap;
     
     % Find valid points
-    vi=find(isfinite(x_lhs)&isfinite(y_top));
+    vi=find(isfinite(x_lhs) & isfinite(y_top)); 
     holder(i).vi=vi;
     
     % Find line color

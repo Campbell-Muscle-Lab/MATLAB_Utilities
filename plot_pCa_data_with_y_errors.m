@@ -65,6 +65,11 @@ for i=1:numel(d)
     [r,c]=size(d(i).pCa);
     if (r>c)
         d(i).x = d(i).pCa';
+        % Faruk has added the following line to avoid exception 
+        % in line 93 of plot_with_erro_bar. This exception occurs when an user
+        % input pCa values as a column but does not display when 
+        % pCa values are in a row. 
+        d(i).pCa=d(i).pCa'; 
     end
     [r,c]=size(d(i).y);
     if (r>c)
@@ -72,7 +77,7 @@ for i=1:numel(d)
     end
     [r,c]=size(d(i).y_error);
     if (r>c)
-        d(i).y = d(i).y_error';
+        d(i).y_error = d(i).y_error';
     end
 end
 
@@ -229,4 +234,4 @@ if (p.x_break_point<max(p.x_ticks))
     %     end
         xb=xb+p.x_break_spacing;
     end
-end
+end 
