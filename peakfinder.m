@@ -142,7 +142,7 @@ end
 if nargin < 6 || isempty(interpolate)
     interpolate = false;
 else
-    interpolate = boolean(interpolate);
+    interpolate = interpolate;
 end
 
 x0 = extrema*x0(:); % Make it so we are finding maxima regardless

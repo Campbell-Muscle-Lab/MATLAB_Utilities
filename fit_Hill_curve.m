@@ -89,7 +89,7 @@ function e = return_hill_curve_error(p,x_data,y_data, ...
         plot(x_data,y_fit,'r-');
         set(gca,'XDir','reverse');
         x_limits = xlim;
-        drawnow;
+%         drawnow;
     end
     
 end

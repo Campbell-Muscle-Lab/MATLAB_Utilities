@@ -22,5 +22,5 @@ out.n = numel(x);
 out.mean = mean(x);
 out.sd = std(x);
 out.sem = std(x)/sqrt(out.n);
-out.max = max(x);
 out.min = min(x);
+out.max = max(x);

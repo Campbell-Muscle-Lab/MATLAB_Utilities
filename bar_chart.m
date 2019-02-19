@@ -39,6 +39,7 @@ params.y_ticks=[];
 params.tick_font_size=12;
 params.color_over_rides=[];
 params.bars_from_zero=0;
+params.transparency = 0;
 params.error_mode='sem';
 
 % Update
@@ -92,13 +93,15 @@ for main_counter=1:no_of_main_groups
             patch(x_holder+x_patch, ...
                 y_data(sub_counter)*y_patch, ...
                 return_bar_color(main_counter,sub_counter), ...
-                'LineWidth',params.line_width);
+                'LineWidth',params.line_width, ...
+                'FaceAlpha',params.transparency);
         else
             patch(x_holder+x_patch, ...
                 [params.y_ticks(1) y_data(sub_counter)*[1 1], ...
                     params.y_ticks(1)], ...
                 return_bar_color(main_counter,sub_counter), ...
-                'LineWidth',params.line_width);
+                'LineWidth',params.line_width, ...
+                'FaceAlpha',params.transparency);
         end
 
         % Draw error_bar
@@ -215,6 +218,7 @@ out.y_ticks = params.y_ticks;
                     bar_color=0.7*ones(1,3);
                 end
             else
+                a = params.bar_colors
                 bar_color=params.bar_colors(sub_index,1:3);
             end
         else
