@@ -13,6 +13,7 @@ addOptional(p,'high_pCa_value',9.0);
 addOptional(p,'pCa90_replacement_value',7.0);
 addOptional(p,'x_limits',[4.5 7]);
 addOptional(p,'x_ticks',[7 6.5:-0.5:4.5]);
+addOptional(p,'x_tick_decimal_places',1);
 addOptional(p,'y_ticks',[]);
 addOptional(p,'x_break_point',6.75);
 addOptional(p,'x_break_width',0.04);
@@ -60,22 +61,6 @@ if (isempty(p.fit_line_colors))
     p.fit_line_colors = p.marker_face_colors;
 end
 
-% Make sure data are in row vectors
-for i=1:numel(d)
-    [r,c]=size(d(i).pCa);
-    if (r>c)
-        d(i).x = d(i).pCa';
-    end
-    [r,c]=size(d(i).y);
-    if (r>c)
-        d(i).y = d(i).y';
-    end
-    [r,c]=size(d(i).y_error);
-    if (r>c)
-        d(i).y = d(i).y_error';
-    end
-end
-
 % Correct for y_scale_factor
 if (~isnan(p.y_scale_factor))
     for i=1:numel(d)
@@ -88,7 +73,13 @@ end
 if (isempty(p.y_ticks))
     y=[];
     for i=1:numel(d)
-        y = [y ; d(i).y'];
+        [r,c]=size(d(i).y);
+        if (r>c)
+            y_temp = d(i).y;
+        else
+            y_temp = d(i).y';
+        end
+        y = [y ; y_temp];
     end
     min_y = min(y);
     max_y = max(y);
@@ -115,6 +106,22 @@ if (~isempty(p.pCa90_replacement_value))
     for i=1:numel(d)
         vi = find(d(i).pCa == p.high_pCa_value);
         d(i).pCa(vi) = p.pCa90_replacement_value;
+    end
+end
+
+% Make sure data are in column vectors
+for i=1:numel(d)
+    [r,c]=size(d(i).pCa);
+    if (c>r)
+        d(i).pCa = d(i).pCa';
+    end
+    [r,c]=size(d(i).y);
+    if (c>r)
+        d(i).y = d(i).y';
+    end
+    [r,c]=size(d(i).y_error);
+    if (c>r)
+        d(i).y_error = d(i).y_error';
     end
 end
 
@@ -171,17 +178,20 @@ if (isfield(d(1),'x_fit'))
                 'LineWidth',p.fit_line_width, ...
                 'Color',p.fit_line_colors(i,:));
         end
-        
+    end
+    for i=numel(d):-1:1
         uistack(h_line(i),'bottom');
     end
 end
 
 % Generate x_tick_labels
 for i=1:length(p.x_ticks)
+    format_string = sprintf('%%.%.0ff',p.x_tick_decimal_places);
+    
     if (p.x_ticks(i)==p.pCa90_replacement_value)
-        x_tick_labels{i}=sprintf('%.1f',p.high_pCa_value);
+        x_tick_labels{i}=sprintf(format_string,p.high_pCa_value);
     else
-        x_tick_labels{i}=sprintf('%.1f',p.x_ticks(i));
+        x_tick_labels{i}=sprintf(format_string,p.x_ticks(i));
     end
 end
 

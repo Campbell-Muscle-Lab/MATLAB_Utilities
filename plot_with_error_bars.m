@@ -49,6 +49,11 @@ if (length(params.y_limits)==0)
     y_min_holder=[];
     y_max_holder=[];
     for i=1:length(params.y_data)
+        
+y = params.y_data(1)        
+yy = params.y_data(i).mean_values
+yy2 = params.y_data(1).error_values
+        
         y_min_holder=[y_min_holder ; ...
             params.y_data(i).mean_values-params.y_data(i).error_values];
         y_max_holder=[y_max_holder ; ...

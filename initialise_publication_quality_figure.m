@@ -186,7 +186,7 @@ for row_counter=1:params.no_of_panels_high
         
         % Check for omit panels
         if (any(params.omit_panels==subplot_counter))
-            break;
+            continue;
         end
         
         % Set lhs normalized to figure width

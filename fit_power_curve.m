@@ -99,6 +99,7 @@ function error_value = power_error(p,x,y,figure_display)
             y_plot(i)=power_value(x_plot(i),p(1),p(2),p(3));
         end
         plot(x_plot,y_plot,'r-');
+        drawnow;
     end
 end
 
