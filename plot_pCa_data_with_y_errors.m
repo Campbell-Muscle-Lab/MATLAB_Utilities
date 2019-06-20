@@ -39,6 +39,7 @@ addOptional(p,'title_text_interpreter','tex');
 addOptional(p,'title_font_weight','normal');
 addOptional(p,'title_y_offset',1.05);
 addOptional(p,'x_axis_off',0);
+addOptional(p,'y_axis_off',0);
 addOptional(p,'gui_scale_factor',0);
 
 parse(p,d,varargin{:});
@@ -218,7 +219,8 @@ axes_data = improve_axes(...
     'title_text_interpreter',p.title_text_interpreter, ...
     'gui_scale_factor',p.gui_scale_factor, ...
     'x_axis_offset',p.x_axis_offset, ...
-    'x_axis_off',p.x_axis_off);
+    'x_axis_off',p.x_axis_off, ...
+    'y_axis_off',p.y_axis_off);
 
 % Add in a break
 if (p.x_break_point<max(p.x_ticks))

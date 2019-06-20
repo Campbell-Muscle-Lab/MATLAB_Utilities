@@ -1,0 +1,63 @@
+# Jitter plot
+
+````
+function out = jitter_plot(varargin)
+
+params.data=[];
+params.spread_width=0.7;
+params.bar_names=[];
+params.group_names=[];
+params.sub_names=[];
+params.group_spacing=1;
+params.y_axis_label='';
+params.y_label_font_size=12;
+params.y_label_text_interpreter='tex';
+params.y_tick_decimal_places=[];
+params.symbols={'o','s','d'};
+params.marker_edge_colors=zeros(5,3);
+params.marker_face_colors=[0 0 1;1 0 0;0 1 0];
+params.marker_line_width=1;
+params.marker_size=8;
+params.marker_transparency = [];
+params.x_axis_end_padding=0.5;
+params.y_sub_label_offset=0.01;
+params.y_main_label_offset=0.2;
+params.font_name='Arial';
+params.mean_line_breadth=0.7;
+params.mean_line_width=2;
+params.mean_line_color=[0 0 0];
+params.mean_line_front=0;
+params.sub_font_size=10;
+params.sub_font_rotation=45;
+params.sub_font_horizontal_alignment='right';
+params.sub_font_interpreter='none';
+params.main_font_size=12;
+params.main_font_rotation=0;
+params.main_font_interpreter='none';
+params.y_label_offset=-0.025;
+params.title='';
+params.title_text_interpreter='none';
+params.title_x_offset=NaN; % NaN is center, number defines placement
+params.title_y_offset=1.1;
+params.title_v_Align='middle';
+params.title_h_Align='center';
+params.title_font_size=12;
+params.y_ticks=[];
+params.y_tick_labels=[];
+params.y_tick_label_positions=[];
+params.y_tick_label_horizontal_offset=-0.04;
+params.y_tick_length=0.025;
+params.y_axis_offset=0.025;
+params.tick_font_size=12;
+params.n_y_bins=20;
+params.max_n_per_row=5;
+params.y_from_zero=1;
+params.join_linked_points=0;
+params.link_line_width=1;
+params.link_line_color=0.5*[1 1 1];
+params.link_line_front=0;
+params.link_line_style='-';
+params.face_color_over_rides=[];
+params.sub_name_over_rides = [];
+params.y_label_rotation=0;
+````
