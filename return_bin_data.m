@@ -36,7 +36,7 @@ for bin_counter=1:no_of_bins
     flag(matching_indices)=1;
 end
 
-n=n
+
 
 discarded_n=numel(x_data)-sum(n);
 if (discarded_n>0)
