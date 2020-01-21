@@ -10,6 +10,8 @@ if (x_data(no_of_points)~=x_data(1))
 else
     guess_gradient=1;
 end
+
+
 guess_intercept=y_data(1)-(x_data(1)*guess_gradient);
 
 p=[guess_gradient guess_intercept];
