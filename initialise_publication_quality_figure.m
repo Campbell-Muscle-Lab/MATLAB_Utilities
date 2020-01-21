@@ -29,6 +29,9 @@ params.right_subplot_adjustments=[];
 params.bottom_subplot_adjustments=[];
 params.height_subplot_adjustments=[];
 
+params.panel_label_x_offset=[];
+params.panel_label_y_offset=[];
+
 params.individual_panels_wide=0;
 params.omit_panels=[];
 
@@ -271,6 +274,10 @@ for row_counter=1:params.no_of_panels_high
                 end
                 x_pos=x_pos-lhs_adjustments(subplot_counter);
                 
+                if (~isempty(params.panel_label_x_offset))
+                    x_pos = x_pos + params.panel_label_x_offset(subplot_counter);
+                end
+                
                 if (length(params.axes_padding_top)==1)
                     y_pos=params.axes_padding_top + ...
                         params.relative_row_heights(row_counter)* ...
@@ -285,6 +292,11 @@ for row_counter=1:params.no_of_panels_high
                 end
                 y_pos=y_pos+bot_adjustments(subplot_counter)+ ...
                     height_adjustments(subplot_counter);
+                
+                if (~isempty(params.panel_label_y_offset))
+                    y_pos = y_pos + params.panel_label_y_offset(subplot_counter);
+                end
+                
                                 
                 if (length(params.individual_panel_labels)>0)
                     text_string=params.individual_panel_labels{ ...

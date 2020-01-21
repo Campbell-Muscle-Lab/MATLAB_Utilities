@@ -18,6 +18,7 @@ params.marker_symbols={'o','s','v','^','d'};
 params.marker_transparency = 0;
 
 params.straight_join_style = 'none';
+params.straight_join_line_width = 1;
 
 params.display_factor=0.5;
 
@@ -197,7 +198,8 @@ for i=1:length(params.x_data)
     
     if (~strcmp(params.straight_join_style,'none'))
         plot(x_mean,y_mean,'-','Color',params.marker_face_colors( ...
-            return_marker_face_colors_index(i,params.marker_face_colors),:));
+            return_marker_face_colors_index(i,params.marker_face_colors),:), ...
+            'LineWidth',params.straight_join_line_width);
     end
         
 end

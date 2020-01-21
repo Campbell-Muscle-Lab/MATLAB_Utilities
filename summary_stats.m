@@ -15,12 +15,12 @@ end
 % Error checking
 [r,c]=size(x);
 if ((r>1)&(c>1))
-    error('summary_stats.m requires a vector');
+%     error('summary_stats.m requires a vector');
 end
 
 out.n = numel(x);
 out.mean = mean(x);
 out.sd = std(x);
 out.sem = std(x)/sqrt(out.n);
-out.min = min(x);
-out.max = max(x);
+[out.min, out.min_index] = min(x);
+[out.max, out.max_index] = max(x);

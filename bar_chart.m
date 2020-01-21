@@ -223,7 +223,7 @@ out.y_ticks = params.y_ticks;
             end
         else
             bar_color=cell2mat(params.color_over_rides(...
-                main_index,sub_index));
+                main_index,sub_index))
         end
     end
 
