@@ -64,9 +64,7 @@ if (isempty(p.Results.factor_2_strings))
 else
     factor_2_strings = p.Results.factor_2_strings;
 end
-
-cc = d.(p.Results.factor_2)
-   
+ 
 % Now organize the data
 counter = 0;
 for i=1:numel(factor_1_strings)
