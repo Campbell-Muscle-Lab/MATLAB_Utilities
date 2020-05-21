@@ -18,11 +18,7 @@ open(out);
 % Add in frames
 progress_bar(0);
 for i=1:numel(image_file_strings)
-    
-%     if (i>1)
-%         break
-%     end
-%     
+
     progress_bar(i/numel(image_file_strings), ...
         sprintf('Adding image %.0f of %.0f to video', ...
             i,numel(image_file_strings)));

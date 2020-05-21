@@ -24,3 +24,4 @@ out.sd = std(x);
 out.sem = std(x)/sqrt(out.n);
 [out.min, out.min_index] = min(x);
 [out.max, out.max_index] = max(x);
+out.range = max(x) - min(x);
