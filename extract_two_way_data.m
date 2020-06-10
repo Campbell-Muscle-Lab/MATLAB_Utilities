@@ -1,4 +1,4 @@
-function [od,jd,bd] = extract_two_way_data(varargin)
+function [od,jd] = extract_two_way_data(varargin)
 
 % Parse inputs
 p = inputParser;
@@ -106,3 +106,11 @@ end
 
 jd(1).f1_strings = factor_1_strings;
 jd(1).f2_strings = factor_2_strings;
+
+% Convert od to a table
+field_names = fieldnames(od);
+for i=1:numel(field_names)
+    od.(field_names{i}) = od.(field_names{i})';
+end
+od = struct2table(od);
+
