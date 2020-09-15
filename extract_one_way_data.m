@@ -2,6 +2,7 @@ function [od,jd] = extract_one_way_data(varargin)
 
 % Parse inputs
 p = inputParser;
+addOptional(p,'data_table', []);
 addOptional(p,'excel_file_string','');
 addOptional(p,'excel_sheet','Sheet1');
 addOptional(p,'parameter_string','');
@@ -17,9 +18,13 @@ parse(p,varargin{:});
 % Code
 
 % Read input data
-d = read_structure_from_excel( ...
-        'filename',p.Results.excel_file_string, ...
-        'sheet',p.Results.excel_sheet);
+if (~isempty(p.Results.data_table))
+    d = read_structure_from_excel( ...
+            'filename',p.Results.excel_file_string, ...
+            'sheet',p.Results.excel_sheet);
+else
+    d = p.Results.data_table;
+end
     
 % Reformat grouping numbers as strings if required
 if (p.Results.convert_grouping_numbers_to_strings)
