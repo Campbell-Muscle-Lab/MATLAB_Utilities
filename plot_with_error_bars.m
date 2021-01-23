@@ -16,6 +16,7 @@ params.marker_edge_colors=zeros(5,3);
 params.marker_face_colors=[1 0 0; 0 1 0; 0 0 1; 0 1 1; 1 0 1];
 params.marker_symbols={'o','s','v','^','d'};
 params.marker_transparency = 0;
+params.marker_line_width = 1;
 
 params.straight_join_style = 'none';
 params.straight_join_line_width = 1;
@@ -194,7 +195,8 @@ for i=1:length(params.x_data)
             return_marker_edge_colors_index(i,params.marker_edge_colors),:), ...
         'MarkerFaceColor',face_color, ...
         'LineStyle','none', ...
-        'MarkerSize',params.marker_size);
+        'MarkerSize',params.marker_size, ...
+        'LineWidth', params.marker_line_width);
     
     if (~strcmp(params.straight_join_style,'none'))
         plot(x_mean,y_mean,'-','Color',params.marker_face_colors( ...

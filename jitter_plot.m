@@ -19,6 +19,7 @@ params.marker_size=8;
 params.marker_transparency = [];
 params.x_axis_end_padding=0.5;
 params.y_sub_label_offset=0.01;
+params.x_sub_label_offset = [];
 params.y_main_label_offset=0.2;
 params.font_name='Arial';
 params.mean_line_breadth=0.7;
@@ -347,8 +348,14 @@ if (~params.x_axis_off)
             else
                 sub_name = params.sub_name_over_rides{main_counter,sub_counter};
             end
+            
+            if (isempty(params.x_sub_label_offset))
+                x_adjust = 0;
+            else
+                x_adjust = params.x_sub_label_offset(sub_counter);
+            end
 
-            text(x_holder, ...
+            text(x_holder + x_adjust, ...
                 y_limits(1)-params.y_sub_label_offset*diff(y_limits), ...
                 sub_name, ...
                 'FontName',params.font_name, ...

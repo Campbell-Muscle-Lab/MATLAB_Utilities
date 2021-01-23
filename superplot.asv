@@ -9,15 +9,11 @@ arguments
     params.design_type = 'one_way';
     params.factor = [];
     params.factor_strings = [];
-    params.factor_labels = [];
     params.factor_1 = [];
     params.factor_1_strings = [];
     params.factor_1_labels = [];
     params.factor_2 = [];
     params.factor_2_strings = [];
-    params.factor_2_labels = [];
-    params.factor_2_labels_y_offset = -0.07;
-    params.factor_2_labels_fontsize = 11;
     params.tag_colors = [];
     params.row_colors = [];
     params.raw_width = 0.4;
@@ -78,7 +74,6 @@ if (strcmp(params.design_type, 'one_way'))
         params.factor_2 = params.factor;
         params.factor_2_strings = unique( ...
             params.data_table.(params.factor_2));
-        params.factor_2_labels = params.factor_labels;
     end
     params.factor_1_strings = {''};
 end
@@ -92,11 +87,6 @@ if (strcmp(params.design_type, 'two_way'))
         params.factor_2_strings = unique( ...
             params.data_table.(params.factor_2));
     end
-end
-
-% Update factor_2_labels
-if (isempty(params.factor_2_labels))
-    params.factor_2_labels = params.factor_2_strings;
 end
 
 % Get the unique values of the grouping variable
@@ -121,6 +111,8 @@ params.data_table.(params.plot_variable) = ...
     params.y_scaling_factor * params.data_table.(params.plot_variable);
 
 % Plot
+
+params
 
 for level_counter = 1:2
     % First time around, plot all data with transparency
@@ -199,10 +191,10 @@ for level_counter = 1:2
 
             switch (params.design_type)
                 case 'one_way'
-                    x_tick_labels = [x_tick_labels {params.factor_2_labels{j}}];
+                    x_tick_labels = [x_tick_labels {params.factor_2_strings{i}}];
                     x_tick_label_positions = [x_tick_label_positions x_c];
                 case 'two_way'
-                    x_tick_labels = [x_tick_labels {params.factor_2_labels{j}}];
+                    x_tick_labels = [x_tick_labels {params.factor_2_strings{j}}];
                     x_tick_label_positions = [x_tick_label_positions x_c];
             end
 
@@ -238,6 +230,9 @@ end
 
 % Set x labels
 x_ticks = [params.x_end_cap 1:x_c x_c-params.x_end_cap];
+% x_tick_labels = [{''}, x_tick_labels];
+xtl = x_tick_labels
+xtp = x_tick_label_positions
 
 ax_out = improve_axes( ...
     'x_ticks', x_ticks, ...
@@ -260,14 +255,13 @@ for i = 1 : numel(x_tick_labels)
         'k-', 'LineWidth', ax_out.axis_line_width, ...
         'Clipping', 'off');
     text(x_tick_label_positions(i), ...
-        ax_out.bottom + params.factor_2_labels_y_offset * ...
-            (ax_out.y_ticks(end) - ax_out.y_ticks(1)), ...
-        x_tick_labels{i}, ...
-        'Rotation', 45, ...
-        'HorizontalAlignment', 'right', ...
-        'VerticalAlignment', 'top', ...
-        'FontSize', params.factor_2_labels_fontsize);
+        ax_out.bottom + params.factor
 end
+% 
+%     'x_tick_label_positions', x_tick_label_positions, ...
+%     'x_tick_labels', x_tick_labels, ...
+%     'x_tick_label_rotation', 45, ...
+%     'x_tick_label_text_interpreter', 'none', ...
 
 % Add in main level
 if (isempty(params.factor_1_labels))

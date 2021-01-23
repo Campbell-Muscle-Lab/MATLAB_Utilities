@@ -472,4 +472,5 @@ axes_data.x_ticks = params.x_ticks;
 axes_data.x_axis_y_location=x_axis_y_location;
 axes_data.axis_line_width=params.axis_line_width;
 axes_data.y_ticks = params.y_ticks;
+axes_data.bottom = bottom;
     

@@ -88,6 +88,7 @@ out.title_string=sprintf( ...
 % Display if required
 if (params.figure_handle>0)
     figure(params.figure_handle);
+    disp('hello')
     if (isempty(params.subplot_handle))
         clf;
     else
