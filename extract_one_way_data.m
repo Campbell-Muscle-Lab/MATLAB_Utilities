@@ -23,8 +23,12 @@ d = read_structure_from_excel( ...
     
 % Reformat grouping numbers as strings if required
 if (p.Results.convert_grouping_numbers_to_strings)
-    d.(p.Results.grouping_string) = ...
-        cellstr(num2str(d.(p.Results.grouping_string)));
+    if (iscell(d.(p.Results.grouping_string)))
+        for i = 1 : numel(d.(p.Results.grouping_string))
+            d.(p.Results.grouping_string){i} = ...
+                num2str(d.(p.Results.grouping_string){i});
+        end
+    end
 end
 
 % Deduce factor_1_strings
@@ -34,6 +38,14 @@ else
     factor_1_strings = p.Results.factor_1_strings;
 end
        
+% Check for numerics
+if (isnumeric(factor_1_strings))
+    factor_1_strings = cellstr(num2str(factor_1_strings));
+end
+if (isnumeric(d.(p.Results.factor_1)))
+    d.(p.Results.factor_1) = cellstr(num2str(d.(p.Results.factor_1)));
+end
+
 % Now organize the data
 counter = 0;
 for i=1:numel(factor_1_strings)
@@ -50,6 +62,11 @@ for i=1:numel(factor_1_strings)
     if (p.Results.exclude_NaNs)
         y_temp = d.(p.Results.parameter_string)(vi);
         vi = vi(find(~isnan(y_temp)));
+    end
+    
+    % Check for numerics
+    if (isnumeric(d.(p.Results.grouping_string)))
+        d.(p.Results.grouping_string) = cellstr(num2str(d.(p.Results.grouping_string)));
     end
     
     for k=1:numel(vi)
