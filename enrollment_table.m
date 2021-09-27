@@ -3,7 +3,7 @@ function enrollment_table(varargin)
 
 p = inputParser;
 addOptional(p, 'clin_data_folder', ...
-    'c:/ken/lab/irb/clinical_data/most_recent');
+    'c:/ken/gill_cvbr/clinical_data/most_recent');
 addOptional(p, 'start_date', '1/1/1900');
 addOptional(p, 'stop_date', '8/1/2019');
 addOptional(p, 'category_fields', {'demo_race', 'demo_ethnicity', 'demo_sex'});

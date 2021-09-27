@@ -15,8 +15,8 @@ if (isempty(params.line_data))
     return
 end
 
-line_data = params.line_data
-d = line_data.data
+line_data = params.line_data;
+d = line_data.data;
 
 % Code
 no_of_lines=numel(line_data);

@@ -13,6 +13,8 @@ arguments
     params.factor_1 = [];
     params.factor_1_strings = [];
     params.factor_1_labels = [];
+    params.factor_1_labels_y_offset = 0.45;
+    params.factor_1_labels_fontsize = 11;
     params.factor_2 = [];
     params.factor_2_strings = [];
     params.factor_2_labels = [];
@@ -20,6 +22,7 @@ arguments
     params.factor_2_labels_fontsize = 11;
     params.tag_colors = [];
     params.row_colors = [];
+    params.row_symbols = [];
     params.raw_width = 0.4;
     params.raw_marker_size = 40;
     params.raw_face_alpha = 0.4;
@@ -172,6 +175,17 @@ for level_counter = 1:2
                 else
                     colors = params.row_colors(vi_colors,:);
                 end
+                
+                % Deduce the symbols
+                if (isempty(params.row_symbols))
+                    if (isempty(params.factor_1))
+                        symbols = tag_symbols(tag_counter);
+                    else
+                        symbols = tag_symbols(tag_counter,:);
+                    end
+                else
+                    symbols = params.row_symbols(vi_colors,:);
+                end
                
                 if (level_counter == 1)
                     scatter(x, y, params.raw_marker_size, ...
@@ -279,10 +293,10 @@ if (strcmp(params.design_type, 'two_way'))
         x = mean([1 numel(params.factor_2_strings)]) + ...
                 ((i-1)*(numel(params.factor_2_strings)+1));
             
-        text(x, (params.y_ticks(1) - params.y_main_label_offset * ...
+        text(x, (params.y_ticks(1) - params.factor_1_labels_y_offset * ...
                 (params.y_ticks(end) - params.y_ticks(1))), ...
             params.factor_1_labels{i}, ...
-            'FontSize', params.main_label_font_size, ...
+            'FontSize', params.factor_1_labels_fontsize, ...
             'Interpreter', 'none', ...
             'HorizontalAlignment','center');
     end
