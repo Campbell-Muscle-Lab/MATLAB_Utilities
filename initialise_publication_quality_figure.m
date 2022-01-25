@@ -49,6 +49,11 @@ if (isempty(params.relative_row_heights))
     params.relative_row_heights=ones(params.no_of_panels_high,1);
 end
 
+if (params.individual_panels_wide == 0)
+    params.individual_panels_wide = params.no_of_panels_wide * ...
+                                        ones(1, params.no_of_panels_high);
+end
+
 % Error checking
 if (length(params.axes_padding_bottom)~=params.no_of_panels_high)
     disp('Axes padding problem');
@@ -61,8 +66,6 @@ for row_counter=1:params.no_of_panels_high
     if (params.individual_panels_wide(1)>0)
         across(row_counter)=params.individual_panels_wide(row_counter);
     end
-    
-    across;
     
     if (~params.individual_padding)
         axes_width_inches(row_counter)= ...
