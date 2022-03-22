@@ -25,8 +25,6 @@ if (isempty(p.Results.data_table))
 else
     d = p.Results.data_table;
 end
-
-d = d
     
 % Reformat grouping numbers as strings if required
 if (p.Results.convert_grouping_numbers_to_strings)
@@ -40,7 +38,6 @@ end
 
 % Deduce factor_1_strings
 if (isempty(p.Results.factor_1_strings))
-    p.Results
     factor_1_strings = unique(d.(p.Results.factor_1));
 else
     factor_1_strings = p.Results.factor_1_strings;
@@ -73,8 +70,10 @@ for i=1:numel(factor_1_strings)
     end
     
     % Check for numerics
-    if (isnumeric(d.(p.Results.grouping_string)))
-        d.(p.Results.grouping_string) = cellstr(num2str(d.(p.Results.grouping_string)));
+    if (~isempty(p.Results.grouping_string))
+        if (isnumeric(d.(p.Results.grouping_string)))
+            d.(p.Results.grouping_string) = cellstr(num2str(d.(p.Results.grouping_string)));
+        end
     end
     
     for k=1:numel(vi)
