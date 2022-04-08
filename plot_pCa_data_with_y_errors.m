@@ -3,7 +3,7 @@ function [h,axes_data]=plot_pCa_data_with_y_errors(d,varargin)
 p=inputParser;
 addRequired(p,'d');
 addOptional(p,'axis_handle',gca);
-addOptional(p,'y_axis_label',{'Stress','(kN m^{-2})'});
+addOptional(p,'y_axis_label',{'Stress','(N m^{-2})'});
 addOptional(p,'y_label_offset',-0.15);
 addOptional(p,'y_axis_offset',-0.05);
 addOptional(p,'y_scale_factor',NaN);
@@ -38,9 +38,12 @@ addOptional(p,'title','');
 addOptional(p,'title_text_interpreter','tex');
 addOptional(p,'title_font_weight','normal');
 addOptional(p,'title_y_offset',1.05);
+addOptional(p,'title_font_size', 12);
 addOptional(p,'x_axis_off',0);
 addOptional(p,'y_axis_off',0);
 addOptional(p,'gui_scale_factor',0);
+addOptional(p,'output_file_string',[]);
+addOptional(p,'output_file_types',{'png'});
 
 parse(p,d,varargin{:});
 p=p.Results;
@@ -215,6 +218,7 @@ axes_data = improve_axes(...
     'y_tick_length',p.y_tick_length, ...
     'title',p.title, ...
     'title_y_offset',p.title_y_offset, ...
+    'title_font_size',p.title_font_size, ...
     'title_font_weight',p.title_font_weight, ...
     'title_text_interpreter',p.title_text_interpreter, ...
     'gui_scale_factor',p.gui_scale_factor, ...
@@ -240,5 +244,13 @@ if (p.x_break_point<max(p.x_ticks))
     %             'k-','LineWidth',params.x_break_line_width);
     %     end
         xb=xb+p.x_break_spacing;
+    end
+end
+
+% Save figure
+if (~isempty(p.output_file_string))
+    for i = 1 : numel(p.output_file_types)
+        figure_export('output_file_string', p.output_file_string, ...
+            'output_type', p.output_file_types{i});
     end
 end
