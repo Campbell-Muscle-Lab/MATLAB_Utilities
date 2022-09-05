@@ -224,10 +224,12 @@ for level_counter = 1:2
                 x_c = x_c + 1;
             end
         end
-                    
-        for k=1:numel(unique_grouping_variables)
-            plot(x_link(k,:),y_link(k,:),'k-', ...
-                'LineWidth', params.link_line_width);
+        
+        if (params.link_line_width > 0)
+            for k=1:numel(unique_grouping_variables)
+                plot(x_link(k,:),y_link(k,:),'k-', ...
+                    'LineWidth', params.link_line_width);
+            end
         end
         
         if (i < numel(params.factor_1_strings))
