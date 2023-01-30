@@ -239,7 +239,10 @@ end
 % Draw y axis label
 if (~params.y_axis_off)
     offset=params.y_label_offset*(params.x_ticks(end)-params.x_ticks(1));
-    text(y_axis_x_location+offset, ...
+    
+    y_axis_label_x_location = y_axis_x_location + offset;
+    
+    text(y_axis_label_x_location, ...
         mean([params.y_ticks(1) params.y_ticks(end)]) + ...
             params.y_label_vertical_offset* ...
                 (params.y_ticks(end)-params.y_ticks(1)), ...
@@ -252,6 +255,8 @@ if (~params.y_axis_off)
         'Rotation',params.y_label_rotation, ...
         'Interpreter',params.y_label_text_interpreter, ...
         'Parent',params.axis_handle);
+    
+    
 
     % Draw y tick labels
     % Deduce the offset
@@ -473,4 +478,4 @@ axes_data.x_axis_y_location=x_axis_y_location;
 axes_data.axis_line_width=params.axis_line_width;
 axes_data.y_ticks = params.y_ticks;
 axes_data.bottom = bottom;
-    
+axes_data.y_axis_label_x_location = y_axis_label_x_location;    
