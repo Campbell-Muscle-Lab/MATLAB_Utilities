@@ -26,7 +26,7 @@ display_string = sprintf('Writing to %s: %s',params.filename,params.sheet);
 disp(display_string);
 
 % Suppress Excel warning
-warning off MATLAB:writecell:AddSheet
+warning off MATLAB:writematrix:AddSheet
 
 % Create a cell array from the structure
 cell_array = structure_to_cell_array(params.structure);
@@ -72,7 +72,9 @@ if (exist(params.filename,'file'))
 end
        
 % Now write the new data
-[status,message]=writecell(params.filename,cell_array,params.sheet);
+writecell(cell_array, params.filename,'Sheet',params.sheet);
+status = [];
+error = [];
 
 % Error check
 if (~status)
