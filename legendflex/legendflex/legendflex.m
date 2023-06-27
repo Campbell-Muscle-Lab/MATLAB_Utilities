@@ -309,6 +309,14 @@ end
 
 S = warning('off', 'MATLAB:legend:PlotEmpty');
 [h.leg, h.obj, h.labeledobj, h.textstr] = legend(legin{:}, extra{:}, 'location', 'northeast');
+
+patch_no = size(findall(h.obj,'type','patch'));
+for i = 1:patch_no(1)
+
+    h.obj(i+patch_no(1)).FaceAlpha = 0.1;
+
+end
+
 nobj = length(h.labeledobj);
 warning(S);
 
