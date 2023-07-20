@@ -310,7 +310,6 @@ end
 S = warning('off', 'MATLAB:legend:PlotEmpty');
 [h.leg, h.obj, h.labeledobj, h.textstr] = legend(legin{:}, extra{:}, 'location', 'northeast');
 
-
 for i = 1:numel(h.obj)
     tx = class(h.obj(i));
     tx = erase(tx,'matlab.graphics.primitive.');
