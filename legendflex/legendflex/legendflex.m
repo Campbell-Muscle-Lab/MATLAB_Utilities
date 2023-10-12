@@ -315,7 +315,7 @@ for i = 1:numel(h.obj)
     tx = erase(tx,'matlab.graphics.primitive.');
     if strcmp(tx,'Patch')
         
-        h.obj(i).FaceAlpha = 0.25;
+        h.obj(i).FaceAlpha = 0.75;
         h.obj(i).EdgeAlpha = 0;
         
     end

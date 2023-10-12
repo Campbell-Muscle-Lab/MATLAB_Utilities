@@ -45,6 +45,8 @@ addOptional(p,'gui_scale_factor',0);
 addOptional(p,'error_bar_display_factor', 0.5);
 addOptional(p,'output_file_string',[]);
 addOptional(p,'output_file_types',{'png'});
+addOptional(p,'y_label_rotation',0);
+
 
 parse(p,d,varargin{:});
 p=p.Results;
@@ -227,7 +229,8 @@ axes_data = improve_axes(...
     'gui_scale_factor',p.gui_scale_factor, ...
     'x_axis_offset',p.x_axis_offset, ...
     'x_axis_off',p.x_axis_off, ...
-    'y_axis_off',p.y_axis_off);
+    'y_axis_off',p.y_axis_off,...
+    'y_label_rotation',p.y_label_rotation);
 
 % Add in a break
 if (p.x_break_point<max(p.x_ticks))
