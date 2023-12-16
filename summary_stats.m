@@ -18,6 +18,7 @@ if ((r>1)&(c>1))
 %     error('summary_stats.m requires a vector');
 end
 
+out.data = x;
 out.n = numel(x);
 out.mean = mean(x);
 out.sd = std(x);

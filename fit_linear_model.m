@@ -6,6 +6,7 @@ params.figure_handle=0;
 params.subplot_handle=[];
 params.confidence_level=0.95;
 params.title_font_size=10;
+params.title_rel_y_pos = 1.2;
 params.x_fit=linspace(min(x(:)),max(x(:)),100);
 params.calculate_confidence_limits=1;
 
@@ -88,7 +89,6 @@ out.title_string=sprintf( ...
 % Display if required
 if (params.figure_handle>0)
     figure(params.figure_handle);
-    disp('hello')
     if (isempty(params.subplot_handle))
         clf;
     else
@@ -106,7 +106,9 @@ if (params.figure_handle>0)
     x_limits=xlim;
     y_limits=ylim;
     if (params.title_font_size>0)
-        text(mean(x_limits),y_limits(2),out.title_string, ...
+        text(mean(x_limits), ...
+            y_limits(1) + params.title_rel_y_pos * diff(y_limits), ...
+            out.title_string, ...
             'HorizontalAlignment','center', ...
             'VerticalAlignment','top', ...
             'FontSize',params.title_font_size);
