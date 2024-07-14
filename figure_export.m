@@ -35,7 +35,8 @@ calling_function=st(2).file;
 
 % Check if we are sending out as svg
 if (strcmp(params.output_type,'svg'))
-    plot2svg(ofs,gcf);
+    saveas(gcf, ofs)
+    % plot2svg(ofs,gcf);
     return
 end    
 
