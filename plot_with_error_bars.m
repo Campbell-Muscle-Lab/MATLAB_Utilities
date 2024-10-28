@@ -69,10 +69,11 @@ else
 end
 
 % Now plot the data
-
+x_limits
 set(params.axis_handle,'XLimMode','manual');
 xlim(params.axis_handle,x_limits);
 set(params.axis_handle,'YLimMode','manual');
+y_limits = [0 1.1]
 ylim(params.axis_handle,y_limits);
 hold(params.axis_handle,'on');
 
